@@ -33,3 +33,25 @@ public class Semaphore {
 
 }
 
+class BinarySemaphore{
+    private boolean s;
+    public BinarySemaphore(boolean producer){
+        s= ! producer;
+    }
+
+    public synchronized void P()
+            throws InterruptedException {
+        while (s) wait();
+        s=true;
+    }
+
+    public synchronized void V() {
+        s=false;
+        notify();
+    }
+
+    public String toString() { // Give semaphore value (for debugging only)
+        return ""+s;
+    }
+}
+

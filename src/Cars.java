@@ -448,7 +448,7 @@ class ControlPanel extends JPanel {
  
     JButton barrier_on       = new JButton("On");
     JButton barrier_off      = new JButton("Off");
-    // JButton barrier_shutdown = new JButton("Shut down");
+    // JButton barrier_shutdown = new JButton("Shut downToUp");
 
     JPanel bridge_panel = new JPanel();   // Combined with barrier panel
 
@@ -791,11 +791,11 @@ public class Cars extends JFrame implements CarDisplayI {
 /*
  *  NO barrier shutdown in this version
  *     
-    // Variables used during barrier shut down
+    // Variables used during barrier shut downToUp
     private ShutDownThread shutDownThread = null;
     private Semaphore      shutDownSem;
     
-    // Thread to carry out barrier off shut down since
+    // Thread to carry out barrier off shut downToUp since
     // it may be blocked by CarControl
 
     class ShutDownThread extends Thread {
@@ -805,12 +805,12 @@ public class Cars extends JFrame implements CarDisplayI {
             try {
 				ctr.barrierShutDown();
 				
-				//System.out.println("Shut down returned");
+				//System.out.println("Shut downToUp returned");
 				EventQueue.invokeLater(new Runnable() {
 				    public void run() { shutDownDone(); }}
 				);
 			} catch (Exception e) {
-				System.err.println("Exception in shut down thread");
+				System.err.println("Exception in shut downToUp thread");
 				e.printStackTrace();
 			}
             
@@ -908,7 +908,7 @@ public class Cars extends JFrame implements CarDisplayI {
     void barrierShutDown(Semaphore done) {
 
         if (shutDownThread != null ) {
-            println("WARNING: Barrier shut down already in progress");
+            println("WARNING: Barrier shut downToUp already in progress");
             if (done != null) done.V();
             return;
         }
@@ -1123,7 +1123,7 @@ public class Cars extends JFrame implements CarDisplayI {
 */    
     
     // Implementation of CarDisplayI 
-    // Mark and clear requests for car no. 0 are processed directly in order not
+    // Mark and clear requests for cars no. 0 are processed directly in order not
     // to fill the event queue (with risk of transiently inconsistent graphics)
 
     // Mark area at position p using color c and number no.
@@ -1172,7 +1172,7 @@ public class Cars extends JFrame implements CarDisplayI {
         return startpos[no];
     }
 
-    public Pos getBarrierPos(int no) {    // Identify pos. at barrier line
+    public Pos getBarrierPos(int no) {    // Identify loc. at barrier line
         return barrierpos[no];
     }
     
@@ -1346,7 +1346,7 @@ class CarTestWrapper implements CarTestingI {
  }
 
 /*
- * The static Layout class defines the concrete topology of the playground including car tracks
+ * The static Layout class defines the concrete topology of the playground including cars tracks
  */
 class Layout {
 	
@@ -1398,9 +1398,9 @@ class Layout {
 		for (int no = 1; no <= 4; no++) {
 			for (int i = 2; i <= 8; i++) { tracksCCW[i][no+3] = new Pos(i-1, no+3); }
 		}
-		// Upper lane (car nos. 3,4)
+		// Upper lane (cars nos. 3,4)
 		for (int j = 1; j <= 7; j++) { tracksCCW[1][j] = new Pos(1, j-1); }
-		// Upper lane (car nos. 1,2)
+		// Upper lane (cars nos. 1,2)
 		for (int j = 1; j <= 5; j++) { tracksCCW[2][j] = new Pos(2, j-1); }
 		// Lower lane
 		for (int j = 0; j <= 6; j++) { tracksCCW[9][j] = new Pos(9, j+1); }

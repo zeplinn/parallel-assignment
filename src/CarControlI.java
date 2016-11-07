@@ -28,10 +28,10 @@ interface CarControlI {
     public void restoreCar(int no);           // Restore Car no. at gate position
                                               // [CTRL+Click at gate no.]
 
-    public void setSpeed(int no,int speed);   // Set speed of car no. (for testing)
+    public void setSpeed(int no,int speed);   // Set speed of cars no. (for testing)
 
     public void setVariation(int no,int var); // Set speed variation (percentage) 
-                                              // of car no. (for testing)
+                                              // of cars no. (for testing)
 
     /*
      *  The barrierSet() method may be called concurrently with the other methods,

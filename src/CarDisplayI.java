@@ -33,7 +33,7 @@ interface CarDisplayI {
 
     public Pos nextPos(int no, Pos pos);  // Get next position for Car no.
     
-    public boolean isSlow(Pos pos);       // Get slow-down state
+    public boolean isSlow(Pos pos);       // Get slow-downToUp state
 
 }
 

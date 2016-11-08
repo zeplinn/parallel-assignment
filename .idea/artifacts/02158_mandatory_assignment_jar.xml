@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="02158 mandatory assignment:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/02158_mandatory_assignment_jar</output-path>
+    <root id="archive" name="02158 mandatory assignment.jar">
+      <element id="module-output" name="02158 mandatory assignment" />
+    </root>
+  </artifact>
+</component>

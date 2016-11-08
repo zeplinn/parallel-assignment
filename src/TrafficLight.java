@@ -39,13 +39,13 @@ public class TrafficLight extends Thread {
                 trafficDir=carDir;
 
                 break;
-            case down:
-                if(carDir.equals(EDirection.up)){
+            case downToUp:
+                if(carDir.equals(EDirection.upToDown)){
                     upCarQueue.add(no);
                 }
                 break;
-            case up:
-                if(carDir.equals(EDirection.down)){
+            case upToDown:
+                if(carDir.equals(EDirection.downToUp)){
                     downCarQueue.add(no);
                 }
                 break;
@@ -55,7 +55,7 @@ public class TrafficLight extends Thread {
     }
     public void queCar(Queue<Semaphore> f , Queue<Semaphore> s, EDirection carDir){
         Semaphore light = new Semaphore(0);
-        if(carDir.equals(EDirection.up)){
+        if(carDir.equals(EDirection.upToDown)){
             upCarQueue.add(light);
             semLightControl.V();
         }
@@ -67,12 +67,12 @@ public class TrafficLight extends Thread {
             switch (trafficDir) {
                 case none:
                     break;
-                case down:
-                    greenLight(downCarQueue,upCarQueue,EDirection.up);
+                case downToUp:
+                    greenLight(downCarQueue,upCarQueue,EDirection.upToDown);
 
                     break;
-                case up:
-                    greenLight(upCarQueue,downCarQueue,EDirection.down);
+                case upToDown:
+                    greenLight(upCarQueue,downCarQueue,EDirection.downToUp);
                     break;
             }
         }
